@@ -143,7 +143,7 @@ extension ApplePayExecutor {
         // Check allowed countries
         if (!self.allowedCountries.isEmpty) {
             let addressIsoCountry = (contact.postalAddress?.isoCountryCode as? String ?? "").lowercased();
-            if self.allowedCountries.contains(addressIsoCountry) {
+            if !self.allowedCountries.contains(addressIsoCountry) {
                 handler(PKPaymentRequestShippingContactUpdate.init(
                     errors: [PKPaymentRequest.paymentShippingAddressInvalidError(withKey: CNPostalAddressISOCountryCodeKey, localizedDescription: self.allowedCountriesError)],
                     paymentSummaryItems: self.paymentRequest?.paymentSummaryItems ?? [],
